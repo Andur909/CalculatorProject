@@ -5,6 +5,9 @@ var label = "";
 var num1 = "0";
 var num2 = "0";
 var operation = "";
+var sign = "+";
+var num3;
+num3 = parseInt(num3)
 
 function addListeners()
 {
@@ -20,6 +23,10 @@ function addListeners()
 	document.getElementById("btneigth").addEventListener("click",eight);
 	document.getElementById("btnnine").addEventListener("click",nine);
 	document.getElementById("btnplus").addEventListener("click",plus);
+	document.getElementById("btnminus").addEventListener("click",minus);
+	document.getElementById("btnmultiplication").addEventListener("click",multiplication);
+	document.getElementById("btn+-").addEventListener("click",signchanger);
+
 
 
 
@@ -95,6 +102,28 @@ function nine()
 	document.getElementById("calculation").value = label;
 }
 
+function signchanger()
+{
+	if (sign === "+")
+	{
+		label = parseInt(label)
+		num3 = label * 2
+		label = label - num3
+		label =  String(label)
+		sign = "-"
+		document.getElementById("calculation").value = label;
+	} else if (sign === "-")
+	{
+		label = parseInt(label)
+		num3 = label * 2
+		label = (label - num3)
+		label =  String(label)
+		sign = "-"
+		document.getElementById("calculation").value = label;
+
+	}
+}
+
 function plus()
 {
 	if (label === "")
@@ -112,13 +141,49 @@ function plus()
 	
 }
 
+function minus()
+{
+	if (label === "")
+	{
+		label = ""
+		return
+	}
+	if (operation != "") {
+		num2 = label
+		operations()
+	}
+	num1 = label;
+	operation = "-";
+	label = ""
+	document.getElementById("btndot").disabled = false;
+}
+
+function multiplication()
+{
+	if (label === "")
+	{
+		label = ""
+		return
+	}
+	if (operation != "") {
+		num2 = label
+		operations()
+	}
+	num1 = label;
+	operation = "x";
+	label = ""
+	document.getElementById("btndot").disabled = false;
+
+	
+}
+
 function operations()
 {
 	if (operation === "+")
 	{
 		label = parseInt(label)
-		num1 = parseInt(label)
-		num2 = parseInt(label)
+		num1 = parseInt(num1)
+		num2 = parseInt(num2)
 		label = num1 + num2
 		label = String(label)
 		num1 = String(num2)
@@ -126,9 +191,33 @@ function operations()
 
 		document.getElementById("calculation").value = label;
 
+	} else if (operation === "-") 
+	{
+		label = parseInt(label)
+		num1 = parseInt(num1)
+		num2 = parseInt(num2)
+		label = num1 - num2
+		label = String(label)
+		num1 = String(num2)
+		num2 = String(num2)
+		
+		document.getElementById("calculation").value = label;
+	} else if (operation === "x")
+	{
+		label = parseInt(label)
+		num1 = parseInt(num1)
+		num2 = parseInt(num2)
+		label = num1 * num2
+		label = String(label)
+		num1 = String(num2)
+		num2 = String(num2)
+		
+		document.getElementById("calculation").value = label;
 	}
 	operation = "";
 	num1 = "";
 	num2 = "";
+		document.getElementById("btndot").disabled = false;
+
 	
 }

@@ -26,6 +26,9 @@ function addListeners()
 	document.getElementById("btnminus").addEventListener("click",minus);
 	document.getElementById("btnmultiplication").addEventListener("click",multiplication);
 	document.getElementById("btn+-").addEventListener("click",signchanger);
+	document.getElementById("btnequal").addEventListener("click",equal);
+	document.getElementById("btndivision").addEventListener("click",division)
+
 
 
 
@@ -102,6 +105,19 @@ function nine()
 	document.getElementById("calculation").value = label;
 }
 
+function equal()
+{
+	if (label === "")
+	{
+		label = "0"
+	}
+	if (operation != "")
+	{
+		num2 = label;
+	}
+	operations()
+}
+
 function signchanger()
 {
 	if (sign === "+")
@@ -173,8 +189,23 @@ function multiplication()
 	operation = "x";
 	label = ""
 	document.getElementById("btndot").disabled = false;
+}
 
-	
+function division()
+{
+	if (label === "")
+	{
+		label = ""
+		return
+	}
+	if (operation != "") {
+		num2 = label
+		operations()
+	}
+	num1 = label;
+	operation = "/";
+	label = ""
+	document.getElementById("btndot").disabled = false;
 }
 
 function operations()
@@ -213,11 +244,24 @@ function operations()
 		num2 = String(num2)
 		
 		document.getElementById("calculation").value = label;
+	} else if (operation === "")
+	{
+		document.getElementById("calculation").value = label;
+	} else if (operation === "/")
+	{
+		label = parseInt(label)
+		num1 = parseInt(num1)
+		num2 = parseInt(num2)
+		label = num1 / num2
+		label = String(label)
+		num1 = String(num2)
+		num2 = String(num2)
+		
+		document.getElementById("calculation").value = label;
 	}
 	operation = "";
 	num1 = "";
 	num2 = "";
-		document.getElementById("btndot").disabled = false;
+	document.getElementById("btndot").disabled = false;
 
-	
 }
